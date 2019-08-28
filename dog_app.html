@@ -13577,7 +13577,9 @@ There are 836 test dog images.
 <li>What percentage of the first 100 images in <code>dog_files</code> have a detected human face? </li>
 </ul>
 <p>Ideally, we would like 100% of human images with a detected face and 0% of dog images with a detected face.  You will see that our algorithm falls short of this goal, but still gives acceptable performance.  We extract the file paths for the first 100 images from each of the datasets and store them in the numpy arrays <code>human_files_short</code> and <code>dog_files_short</code>.</p>
-<p><strong>Answer:</strong>  <strong>the face detector finds human faces in 11% of the dog photos; that's meaning identified 11 images as containing human faces (instead of dog faces) in it.</strong></p>
+<p><strong>Answer:</strong></p>
+<p><strong>The face detector finds human faces in 11% of the first 100 dog photos; that's meaning identified 11 images as containing human faces (instead of dog faces) in it.</strong></p>
+<p><strong>The face detector finds human faces in 100% of the first 100 human photos; that's meaning the algorithm "Face_detector" work done on human faces</strong></p>
 
 </div>
 </div>
@@ -13640,7 +13642,7 @@ There are 11.0% images of the first 100 dog_files that have a detected human fac
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[57]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## (Optional) TODO: Report the performance of another  </span>
@@ -13803,7 +13805,10 @@ $$<p>Here, <code>nb_samples</code> is the number of samples, or number of images
 <li>What percentage of the images in <code>human_files_short</code> have a detected dog?  </li>
 <li>What percentage of the images in <code>dog_files_short</code> have a detected dog?</li>
 </ul>
-<p><strong>Answer:</strong>  <strong>he dog detector finds human faces in 0% of the human photo</strong></p>
+<p><strong>Answer:</strong></p>
+<p><strong>The dog detector finds human faces in 0% of the human photo</strong></p>
+<p><strong>The dog detector finds human faces in 100% of the human photo</strong></p>
+<p><strong>that's meaning the algorithm "dog_detector" work done on both human faces and dogs</strong></p>
 
 </div>
 </div>
@@ -13958,28 +13963,19 @@ There are 100.0% images of the first 100 dog_files that have a detected dog face
 <p>We have imported some Python modules to get you started, but feel free to import as many modules as you need.  If you end up getting stuck, here's a hint that specifies a model that trains relatively fast on CPU and attains &gt;1% test accuracy in 5 epochs:</p>
 <p><img src="images/sample_cnn.png" alt="Sample CNN"></p>
 <p><strong>Question 4:</strong> Outline the steps you took to get to your final CNN architecture and your reasoning at each step.  If you chose to use the hinted architecture above, describe why you think that CNN architecture should work well for the image classification task.</p>
-<p><strong>Answer:</strong></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>I've learned alot anf get some help from this <a href="https://towardsdatascience.com/building-a-convolutional-neural-network-cnn-in-keras-329fbbadc5f5">article</a> and <a href="https://medium.com/datadriveninvestor/building-powerful-image-classification-convolutional-neural-network-using-keras-a1839d0ff298">this</a></strong></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Answer:</strong>  <strong>I've learned alot anf get some help from this <a href="https://towardsdatascience.com/building-a-convolutional-neural-network-cnn-in-keras-329fbbadc5f5">article</a> and <a href="https://medium.com/datadriveninvestor/building-powerful-image-classification-convolutional-neural-network-using-keras-a1839d0ff298">this</a></strong></p>
 <h1 id="High-level-steps-to-build-the-CNN-to-classify-images-are">High-level steps to build the CNN to classify images are<a class="anchor-link" href="#High-level-steps-to-build-the-CNN-to-classify-images-are">&#182;</a></h1><p><strong>1_Create convolutional layers by applying kernel or feature maps</strong></p>
 <p><strong>2_Apply Max pool for translational invariance</strong></p>
 <p><strong>3_Flatten the inputs</strong></p>
 <p><strong>4_Create a Fully connected neural network</strong></p>
 <p><strong>5_Train the model</strong></p>
 <p><strong>6_Predict the output</strong></p>
+<p>Our three first layers is Conv2D layers. convolution layers that will deal with our input images, which are seen as 2-dimensional matrices. their number of filters  16,32,64 is the number of nodes, Kernel size is the size of the filter matrix for our convolution.So a kernel size of 2 means we will have a 2x2 filter matrix or feature detector.Padding is used on the convolutional layers to ensure the height and width of the output feature maps matches the inputs. The activation function we will be using for our layers is the ReLU Rectifier Linear Unit which helps with non linearity in the neural network. Our first layer also takes in an input shape.This is the shape of each input image, 224, 224, 3</p>
+<p>And between these layers I added a Max Pooling Layer. we apply max pooling for translational invariance. Translational invariance is when we change the input by a small amount the outputs do not change. Max pooling reduces the number of cells. Pooling helps detect features like colors, edges etc. For max pooling, we use the pool_size of 2 by 2 matrix for all 32 feature maps.</p>
+<p>After that, there is a "Flatten" layer. Flatten serves as a connection between the convolution and dense layers.step is to flatten all the inputs. The flattened data will be the input to the fully connected neural network.</p>
+<p>'Dense’ is the layer type we will use in for our output layer. Dense is a standard layer type that is used in many cases for neural networks.</p>
+<p>we use Dropout rate of 20% to prevent overfitting.</p>
+<p>The activation is ‘softmax’. Softmax makes the output sum up to 1 so the output can be interpreted as probabilities. The model will then make its prediction based on which option has the highest probability.</p>
 
 </div>
 </div>
@@ -14641,6 +14637,7 @@ test_{network} = bottleneck_features['test']</code></pre>
 </code></pre>
 <p><strong>Question 5:</strong> Outline the steps you took to get to your final CNN architecture and your reasoning at each step.  Describe why you think the architecture is suitable for the current problem.</p>
 <p><strong>Answer:</strong></p>
+<p><strong>I used the CNN architecture with the Resnet50 bottleneck and adding the GlobalAveragePooling2D to flatten the features into a vector that could be fed into a fully-connected layer to the end of the ResNet50 model.where the fully -connected layer contains one node for each dog category and is equipped with a softmax.</strong></p>
 
 </div>
 </div>
@@ -14994,7 +14991,10 @@ Epoch 20/20
 <h2 id="Step-7:-Test-Your-Algorithm">Step 7: Test Your Algorithm<a class="anchor-link" href="#Step-7:-Test-Your-Algorithm">&#182;</a></h2><p>In this section, you will take your new algorithm for a spin!  What kind of dog does the algorithm think that <strong>you</strong> look like?  If you have a dog, does it predict your dog's breed accurately?  If you have a cat, does it mistakenly think that your cat is a dog?</p>
 <h3 id="(IMPLEMENTATION)-Test-Your-Algorithm-on-Sample-Images!">(IMPLEMENTATION) Test Your Algorithm on Sample Images!<a class="anchor-link" href="#(IMPLEMENTATION)-Test-Your-Algorithm-on-Sample-Images!">&#182;</a></h3><p>Test your algorithm at least six images on your computer.  Feel free to use any images you like.  Use at least two human and two dog images.</p>
 <p><strong>Question 6:</strong> Is the output better than you expected :) ?  Or worse :( ?  Provide at least three possible points of improvement for your algorithm.</p>
-<p><strong>Answer:</strong></p>
+<p><strong>Answer:</strong>  <strong>the output better than i expected but it could be better;</strong></p>
+<p><strong>1_if we use more data and using Image Augmentation</strong></p>
+<p><strong>2_if we add more epochs in the training process but here we can't add more cause more parameters means longer training</strong></p>
+<p><strong>3_if we use more layers of the neural network</strong></p>
 
 </div>
 </div>
