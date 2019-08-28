@@ -93,7 +93,7 @@ You will also need to have software installed to run and execute an iPython Note
 I recommend you install Anaconda, a pre-packaged Python distribution that contains all of the necessary libraries and software for this project
 
 
-# File Descriptions
+
 
 
 # A blog post
